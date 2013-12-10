@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CPCupb" Class="ModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=JUANTO-PC;Initial Catalog=CPCupb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DefaultConnection" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
+    <Type Name="aspnet_User">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_User_Rank" Member="Rank" ThisKey="UserId" OtherKey="IdUser" Type="Rank" Cardinality="One" />
+      <Association Name="aspnet_User_Usuario" Member="Usuario" ThisKey="UserId" OtherKey="IdUser" Type="Usuario" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MapEdges" Member="MapEdges">
+    <Type Name="MapEdge">
+      <Column Name="IdSourceProblem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdDestProblem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Problem_MapEdge" Member="Problem" ThisKey="IdSourceProblem" OtherKey="IdUva" Type="Problem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rank" Member="Ranks">
+    <Type Name="Rank">
+      <Column Name="IdUser" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UvaUserName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Solved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="aspnet_User_Rank" Member="aspnet_User" ThisKey="IdUser" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comment" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="IdComment" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdProblem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commentary" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="LinkToSolution" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="IdUser" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NameUser" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Problem_Comment" Member="Problem" ThisKey="IdProblem" OtherKey="IdUva" Type="Problem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="IdUser" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Universidad" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Uname" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="Uid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Usuario_SolutionsPerUser" Member="SolutionsPerUsers" ThisKey="Uid" OtherKey="Uid" Type="SolutionsPerUser" />
+      <Association Name="aspnet_User_Usuario" Member="aspnet_User" ThisKey="IdUser" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SolutionsPerUser" Member="SolutionsPerUsers">
+    <Type Name="SolutionsPerUser">
+      <Column Name="Uid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Problemid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SolutionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="Usuario_SolutionsPerUser" Member="Usuario" ThisKey="Uid" OtherKey="Uid" Type="Usuario" IsForeignKey="true" />
+      <Association Name="Problem_SolutionsPerUser" Member="Problem" ThisKey="Problemid" OtherKey="UvaProblemId" Type="Problem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Problem" Member="Problems">
+    <Type Name="Problem">
+      <Column Name="IdUva" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Decimal" DbType="Decimal(18,6)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="URL" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MarkerIcon" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="UvaProblemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Difficulty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MarkerIconSolved" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Association Name="Problem_MapEdge" Member="MapEdges" ThisKey="IdUva" OtherKey="IdSourceProblem" Type="MapEdge" />
+      <Association Name="Problem_Comment" Member="Comments" ThisKey="IdUva" OtherKey="IdProblem" Type="Comment" />
+      <Association Name="Problem_SolutionsPerUser" Member="SolutionsPerUsers" ThisKey="UvaProblemId" OtherKey="Problemid" Type="SolutionsPerUser" />
+    </Type>
+  </Table>
+</Database>

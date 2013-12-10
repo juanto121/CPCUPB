@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication3.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> </title>
+    <link href="StyleSheets/Pure.css" rel="stylesheet" type="text/css" />
+    <link href="StyleSheets/CustomMaster.css" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <script src="Assets/JS/jquery-2.0.3.js"></script>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    
+      <script type="text/javascript">
+
+          $(document).ready(function () {
+              $("#menuLink").click(function () {
+                  $("#layout").toggleClass("pure-g-r active", 1000);
+              });
+          });
+       </script>
+</head>
+<body>
+    <div class="pure-g-r" id="layout">
+        <a href="#menu" id="menuLink" class="pure-menu-link">
+            <span></span>
+        </a>
+    <form runat="server">
+        <div class="pure-u" id="menu">
+            <div class="pure-menu pure-menu-open">           
+            <a class="pure-menu-heading" href="/">CPC UPB</a>               
+            <asp:LoginView runat="server" ViewStateMode="Disabled">
+                <AnonymousTemplate>
+                    <ul>
+                        <li><a id="registerLink" runat="server" href="~/Account/SignUp.aspx">Register</a></li>
+                        <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
+                    </ul>
+                </AnonymousTemplate>
+                <LoggedInTemplate>
+                    
+                        <a runat="server" class="username" href="#" title="Manage your account">
+                            <asp:LoginName runat="server" CssClass="username" /></a>
+                        <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                   
+                </LoggedInTemplate>
+            </asp:LoginView>      
+            <ul>
+                <li><a runat="server" href="~/">Home</a></li>
+                <li><a runat="server" href="~/KnowledgeMap.aspx">Knowledge Map</a></li>
+                <li><a id="A1" runat="server" href="~/KnowledgeMap.aspx">Tools</a></li>
+                <li><a id="Rank" runat="server" href="~/Ranking.aspx">Users Ranking</a></li>
+               
+                
+            </ul>
+                </div>
+        </div>
+    
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+       
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+       
+    
+        <footer>
+        
+     
+            
+        </footer>
+
+    </form>
+  </div>
+</body>
+    
+</html>

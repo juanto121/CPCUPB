@@ -1,0 +1,57 @@
+﻿body {
+    letter-spacing:normal;
+}
+
+.pure-g-r {
+ display:block;
+}
+
+img {
+    float:right;
+    display: inline-block;
+}
+
+.thumbnail {
+    margin-top:36px;
+}
+
+h1 {
+    display: inline-block;
+}
+.commentContainer {
+    margin-top:20px;
+}
+
+.pure-button {
+    float:right;
+}
+
+.CommentArea {
+    width:100%;
+  margin-bottom: 10px;
+
+}
+
+.framing {
+    width:100%;
+    
+}
+
+/* Apply the .box class on the immediate parent of any grid element (pure-u-*) to apply some padding. */
+.l-box {
+    padding: 1.3em;
+}
+
+.l-vbox {
+    padding: 1.3em 0;
+}
+
+.l-hbox {
+    padding: 0 1.3em;
+}
+
+.l-centered {
+    text-align: center;
+}
+
+

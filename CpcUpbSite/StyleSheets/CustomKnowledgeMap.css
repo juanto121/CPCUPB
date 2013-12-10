@@ -1,0 +1,61 @@
+﻿#map-canvas {
+    height:700px;
+    width:90%;
+    margin-top:30px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left:10%;
+    letter-spacing:normal;
+    display:block;  
+}
+
+#content {
+width:200px;
+}
+.paginator {
+   text-align:center;
+}
+
+h1 {
+    display: inline-block;
+    color: lightgray;
+}
+
+.problem:hover {
+    background-color: #29244e;
+}
+
+.problemMark {
+    float:right;
+    display: inline-block;
+    margin-top:15px;
+}
+
+.pure-g-r {
+ display:block;
+}
+
+#map-canvas img {
+    max-width: none;
+}
+
+body {
+    background-color:#0F0F0F;
+}
+
+
+img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.legalImage {
+    float:right;
+   
+}
+
+.externalLink {
+    padding-right: 10px;
+    padding-top:5px;
+}

@@ -80,7 +80,7 @@
             <div class="1-box legal-links">
                 <div class="externalLink">
                     <img class="legalImage" src="Assets/Images/GitHub-Mark-32px.png" />
-                    <a class="externalLink" href="https://github.com/array0001">See on GitHub
+                    <a class="externalLink" href="https://github.com/juanto121">See on GitHub
                     </a>
                 </div>
                 <div class="externalLink">

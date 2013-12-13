@@ -25,8 +25,9 @@ namespace WebApplication3.Application_Code
         {
             
             int NoAccepted = uvareq.GetUvaUserSolvedProblems(uid);
-            user.Rank.Solved = NoAccepted;//test if null then same solved
-            modx.SubmitChanges();
+            if (NoAccepted != null) { user.Rank.Solved = NoAccepted; modx.SubmitChanges(); }
+            //test if null then same solved
+            
         }
 
         public void UpdateSolutionsForSpecificUser(aspnet_User user, int uid)

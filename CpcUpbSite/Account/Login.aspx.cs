@@ -23,7 +23,7 @@ namespace WebApplication3.Account
             
             if (Membership.ValidateUser(txt_uvauser.Text, txt_password.Text)){
                 aspnet_User cuser = dtmanager.GetUserByUname(txt_uvauser.Text);
-                dtmanager.UpdateRankingForSpecificUser(cuser,cuser.Usuario.Uid);
+        //        dtmanager.UpdateRankingForSpecificUser(cuser,cuser.Usuario.Uid);
                 dtmanager.UpdateSolutionsForSpecificUser(cuser, cuser.Usuario.Uid);
                 FormsAuthentication.RedirectFromLoginPage(txt_uvauser.Text, true);
             }             

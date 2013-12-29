@@ -25,7 +25,26 @@ namespace WebApplication3.Application_Code
         {
             
             int NoAccepted = uvareq.GetUvaUserSolvedProblems(uid);
-            if (NoAccepted != null) { user.Rank.Solved = NoAccepted; modx.SubmitChanges(); }
+            Rank userRank = user.Rank;
+
+            if (userRank != null)
+            {
+                user.Rank.Solved = NoAccepted;
+                
+            }
+            else
+            {
+
+                userRank = new Rank() {
+                    IdUser = user.UserId,
+                    UvaUserName = user.UserName,
+                    Solved = NoAccepted
+                };
+
+                modx.Ranks.InsertOnSubmit(userRank);
+               
+            }
+            modx.SubmitChanges();
             //test if null then same solved
             
         }

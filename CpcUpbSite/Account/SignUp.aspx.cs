@@ -57,7 +57,7 @@ namespace WebApplication3.Account
 
                     mod.Ranks.InsertOnSubmit(rank);
                     mod.SubmitChanges();
-             //       dtm.UpdateRankingForSpecificUser(us.aspnet_User, intUserUvaId);
+                    dtm.UpdateRankingForSpecificUser(us.aspnet_User, intUserUvaId);
                     FormsAuthentication.SetAuthCookie(txt_name.Text, false);
 
                     Response.Redirect("../Default.aspx");

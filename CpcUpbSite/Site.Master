@@ -47,7 +47,7 @@
             <ul>
                 <li><a runat="server" href="~/">Home</a></li>
                 <li><a runat="server" href="~/KnowledgeMap.aspx">Knowledge Map</a></li>
-                <li><a id="A1" runat="server" href="~/KnowledgeMap.aspx">Tools</a></li>
+                <li><a id="A1" runat="server" href="~/Tools.aspx">Tools</a></li>
                 <li><a id="Rank" runat="server" href="~/Ranking.aspx">Users Ranking</a></li>
                
                 

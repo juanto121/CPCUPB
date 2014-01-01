@@ -52,8 +52,6 @@ namespace WebApplication3.Application_Code
 
                 }
                 
-                
-
                 modx.SubmitChanges();
             }
             catch (NullReferenceException ex)

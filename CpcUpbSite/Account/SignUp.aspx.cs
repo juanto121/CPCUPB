@@ -50,15 +50,14 @@ namespace WebApplication3.Account
 
                     mod.Usuarios.InsertOnSubmit(us);
                     mod.SubmitChanges();
-
-                    dtm.UpdateRankingForSpecificUser(us.aspnet_User, intUserUvaId);
-                    FormsAuthentication.SetAuthCookie(txt_name.Text, false);
-                    Response.Redirect("../Default.aspx");
+                    //FormsAuthentication.SetAuthCookie(txt_name.Text, false);
+                    
+                    Response.Redirect("Login.aspx");
                 }
                 else
                 {
                     if (userUvaId.Equals("")) Msg.Text = "Hubo un problema con el servidor de uHunt intenta el registro más tarde.";
-                    if (userUvaId == null) Msg.Text = "Usuario de Uva no esta registrado";
+                    if (userUvaId == null||userUvaId.Equals("0")) Msg.Text = "Usuario de Uva no esta registrado";
                 }
 
                 

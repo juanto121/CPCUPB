@@ -13,25 +13,28 @@ namespace WebApplication3.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //txt_email.Text = "";
+            //txt_name.Text = "";
+            //txt_password.Text = "";
+            //txt_uni.Text = "";
+            //txt_uvauser.Text = "";
         }
 
         protected void SignUp_Click(object sender, EventArgs e)
         {
             try
             {
-               Datamanager dtm = new Datamanager();
-               ModelDataContext mod = new ModelDataContext();
-               
+                Datamanager dtm = new Datamanager();
+                ModelDataContext mod = new ModelDataContext();
+
                 UvaRequest uvReq = new UvaRequest();
                 string userUvaId = uvReq.GetUvaUserIdByUsername(txt_uvauser.Text);
-                if (userUvaId != null && !userUvaId.Equals("0"))
+                if (userUvaId != null && !userUvaId.Equals("0") && !userUvaId.Equals(""))
                 {
                     MembershipUser user =
-                   Membership.CreateUser(txt_uvauser.Text, txt_password.Text, txt_email.Text);
+                    Membership.CreateUser(txt_uvauser.Text, txt_password.Text, txt_email.Text);
 
                     Guid id = (Guid)user.ProviderUserKey;
-
 
                     int intUserUvaId = int.Parse(userUvaId);
 
@@ -48,24 +51,18 @@ namespace WebApplication3.Account
                     mod.Usuarios.InsertOnSubmit(us);
                     mod.SubmitChanges();
 
-                    Rank rank = new Rank()
-                    {
-                        IdUser = id,
-                        UvaUserName = txt_uvauser.Text,
-                        Solved = 0
-                    };
-
-                    mod.Ranks.InsertOnSubmit(rank);
-                    mod.SubmitChanges();
                     dtm.UpdateRankingForSpecificUser(us.aspnet_User, intUserUvaId);
                     FormsAuthentication.SetAuthCookie(txt_name.Text, false);
-
                     Response.Redirect("../Default.aspx");
                 }
                 else
                 {
-                    Msg.Text = "Usuario de Uva no esta registrado";
+                    if (userUvaId.Equals("")) Msg.Text = "Hubo un problema con el servidor de uHunt intenta el registro más tarde.";
+                    if (userUvaId == null) Msg.Text = "Usuario de Uva no esta registrado";
                 }
+
+                
+
             }
             catch (System.Web.Security.MembershipCreateUserException ex)
             {
@@ -75,11 +72,13 @@ namespace WebApplication3.Account
                         Msg.Text = "Email está en uso";
                         break;
                     case MembershipCreateStatus.DuplicateProviderUserKey:
+                        Msg.Text = "DPUK";
                         break;
                     case MembershipCreateStatus.DuplicateUserName:
                         Msg.Text = "Usuario está en uso";
                         break;
                     case MembershipCreateStatus.InvalidAnswer:
+                        Msg.Text = "Respuesta Invalida";
                         break;
                     case MembershipCreateStatus.InvalidEmail:
                         Msg.Text = "Email inválido";
@@ -88,16 +87,22 @@ namespace WebApplication3.Account
                         Msg.Text = "Contraseña inválida";
                         break;
                     case MembershipCreateStatus.InvalidProviderUserKey:
+                        Msg.Text = "Invalid Provider User Key";
                         break;
                     case MembershipCreateStatus.InvalidQuestion:
+                        Msg.Text = "Invalid Question";
                         break;
                     case MembershipCreateStatus.InvalidUserName:
+                        Msg.Text = "Usuario Inválido";
                         break;
                     case MembershipCreateStatus.ProviderError:
+                        Msg.Text = "Provider Error";
                         break;
                     case MembershipCreateStatus.Success:
+                        Msg.Text = "Succes!";
                         break;
                     case MembershipCreateStatus.UserRejected:
+                        Msg.Text = "User Rejected";
                         break;
                     default:
                         break;

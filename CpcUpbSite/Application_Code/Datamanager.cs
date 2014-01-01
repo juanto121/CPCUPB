@@ -14,7 +14,11 @@ namespace WebApplication3.Application_Code
             modx = new ModelDataContext();
             uvareq = new UvaRequest();
         }
-        
+
+        public Usuario AddNewUsuario()
+        {
+            return null;
+        }
 
         public aspnet_User GetUserByUname(string uname)
         {
@@ -25,26 +29,37 @@ namespace WebApplication3.Application_Code
         {
             
             int NoAccepted = uvareq.GetUvaUserSolvedProblems(uid);
-            Rank userRank = user.Rank;
+            Rank userRank;
 
-            if (userRank != null)
+            try
             {
-                user.Rank.Solved = NoAccepted;
+                if ( user.Rank != null)
+                {
+                    user.Rank.Solved = NoAccepted;
+                }
+                else
+                {
+
+                    userRank = new Rank()
+                    {
+                        IdUser = user.UserId,
+                        UvaUserName = user.UserName,
+                        Solved = NoAccepted
+                    };
+
+
+                    modx.Ranks.InsertOnSubmit(userRank);
+
+                }
                 
+                
+
+                modx.SubmitChanges();
             }
-            else
+            catch (NullReferenceException ex)
             {
 
-                userRank = new Rank() {
-                    IdUser = user.UserId,
-                    UvaUserName = user.UserName,
-                    Solved = NoAccepted
-                };
-
-                modx.Ranks.InsertOnSubmit(userRank);
-               
             }
-            modx.SubmitChanges();
             //test if null then same solved
             
         }

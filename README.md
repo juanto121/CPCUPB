@@ -1,6 +1,8 @@
 CPCUPB
 ======
 
- http://cpcubp.apphb.com/
+live: http://cpcubp.apphb.com/
 
-.Net UPB Competitive Programming Site
+Competitive programming platform for UPB students.
+
+![Knowledge map](https://s3.amazonaws.com/juantorres-personal-bucket/cpcp_upb_image.PNG "Knowledge map snap")
